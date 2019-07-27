@@ -34,12 +34,13 @@ SEXP cleanupP(double *s, double *w, double *a, double *r, int *e1, int *e2, doub
 }
 
 // Coordinate descent for poisson models
-SEXP cdfit_poisson(SEXP X_, SEXP y_, SEXP penalty_, SEXP lambda, SEXP eps_, SEXP max_iter_, SEXP gamma_, SEXP multiplier, SEXP alpha_, SEXP dfmax_, SEXP user_, SEXP warn_) {
+SEXP cdfit_poisson(SEXP X_, SEXP y_, SEXP penalty_, SEXP lambda, SEXP wts, SEXP eps_, SEXP max_iter_, SEXP gamma_, SEXP multiplier, SEXP alpha_, SEXP dfmax_, SEXP user_, SEXP warn_) {
 
   // Declarations
   int n = length(y_);
   int p = length(X_)/n;
   int L = length(lambda);
+  double *wi = REAL(wts);
   SEXP res, beta0, beta, Dev, Eta, iter;
   PROTECT(beta0 = allocVector(REALSXP, L));
   double *b0 = REAL(beta0);
@@ -141,7 +142,7 @@ SEXP cdfit_poisson(SEXP X_, SEXP y_, SEXP penalty_, SEXP lambda, SEXP eps_, SEXP
           double maxChange = 0;
 	  for (int i=0;i<n;i++) {
 	    mu = exp(eta[i]);
-	    w[i] = mu;
+	    w[i] = wi[i]*mu;
 	    s[i] = y[i] - mu;
 	    r[i] = s[i]/w[i];
 	    if (y[i]!=0) REAL(Dev)[l] += y[i]*log(y[i]/mu);
