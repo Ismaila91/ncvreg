@@ -83,7 +83,7 @@ ncvreg <- function(X, y, family=c("gaussian","binomial","poisson"), penalty=c("M
   if (warn & sum(iter)==max.iter) warning("Maximum number of iterations reached")
 
   ## Local convexity?
-  convex.min <- if (convex) convexMin(b, XX, penalty, wts, gamma, lambda*(1-alpha), family, penalty.factor, a=a) else NULL
+  convex.min <- if (convex) convexMin(b, XX, penalty, gamma, lambda*(1-alpha), family, penalty.factor, a=a) else NULL
 
   ## Unstandardize
   beta <- matrix(0, nrow=(ncol(X)+1), ncol=length(lambda))
