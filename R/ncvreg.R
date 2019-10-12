@@ -1,5 +1,5 @@
 ncvreg <- function(X, y, family=c("gaussian","binomial","poisson"), penalty=c("MCP", "SCAD", "lasso"),
-                   gamma=switch(penalty, SCAD=3.7, 3), wts=rep(1,nrow(X)), alpha=1, lambda.min=ifelse(n>p,.001,.05), nlambda=100,
+                   gamma=switch(penalty, SCAD=3.7, 3), wts=rep(1, as.integer(dim(X)[1])), alpha=1, lambda.min=ifelse(n>p,.001,.05), nlambda=100,
                    lambda, eps=1e-4, max.iter=10000, convex=TRUE, dfmax=p+1, penalty.factor=rep(1, ncol(X)),
                    warn=TRUE, returnX, ...) {
   # Coersion
@@ -83,7 +83,7 @@ ncvreg <- function(X, y, family=c("gaussian","binomial","poisson"), penalty=c("M
   if (warn & sum(iter)==max.iter) warning("Maximum number of iterations reached")
 
   ## Local convexity?
-  convex.min <- if (convex) convexMin(b, XX, penalty, gamma, lambda*(1-alpha), family, penalty.factor, a=a) else NULL
+  convex.min <- if (convex) convexMin(b, XX, penalty, wts, gamma, lambda*(1-alpha), family, penalty.factor, a=a) else NULL
 
   ## Unstandardize
   beta <- matrix(0, nrow=(ncol(X)+1), ncol=length(lambda))

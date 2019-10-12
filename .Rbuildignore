@@ -1,3 +1,5 @@
 ^pkgdown$
 ^docs$
 ^index.Rmd$
+^.*\.Rproj$
+^\.Rproj\.user$

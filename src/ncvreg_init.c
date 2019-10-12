@@ -9,7 +9,7 @@
 extern SEXP cdfit_binomial(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP cdfit_cox_dh(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP cdfit_gaussian(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
-extern SEXP cdfit_poisson(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP cdfit_poisson(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP maxprod(SEXP, SEXP, SEXP, SEXP);
 extern SEXP mfdr_binomial(SEXP);
 extern SEXP mfdr_cox(SEXP);
@@ -96,7 +96,7 @@ static const R_CallMethodDef CallEntries[] = {
   {"cdfit_binomial", (DL_FUNC) &cdfit_binomial, 12},
   {"cdfit_cox_dh",   (DL_FUNC) &cdfit_cox_dh,   12},
   {"cdfit_gaussian", (DL_FUNC) &cdfit_gaussian, 11},
-  {"cdfit_poisson",  (DL_FUNC) &cdfit_poisson,  12},
+  {"cdfit_poisson",  (DL_FUNC) &cdfit_poisson,  13},
   {"maxprod",        (DL_FUNC) &maxprod,         4},
   {"mfdr_binomial",  (DL_FUNC) &mfdr_binomial,   1},
   {"mfdr_cox",       (DL_FUNC) &mfdr_cox,        1},
